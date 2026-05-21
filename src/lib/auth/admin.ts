@@ -1,10 +1,7 @@
-import { getEnv } from "@/lib/env";
-
 const COOKIE_NAME = "bc_admin";
 
-export async function getAdminSecret(): Promise<string | undefined> {
-  const env = await getEnv();
-  return env.ADMIN_SECRET;
+export function getAdminSecret(): string | undefined {
+  return process.env.ADMIN_SECRET;
 }
 
 export async function hashAdminSecret(secret: string): Promise<string> {
@@ -16,7 +13,7 @@ export async function hashAdminSecret(secret: string): Promise<string> {
 }
 
 export async function getExpectedAdminCookie(): Promise<string | null> {
-  const secret = await getAdminSecret();
+  const secret = getAdminSecret();
   if (!secret) return null;
   return hashAdminSecret(secret);
 }
@@ -30,7 +27,7 @@ export async function verifyAdminCookie(
 }
 
 export async function verifyAdminRequest(request: Request): Promise<boolean> {
-  const secret = await getAdminSecret();
+  const secret = getAdminSecret();
   if (!secret) return true;
 
   const auth = request.headers.get("authorization");

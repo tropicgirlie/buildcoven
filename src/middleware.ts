@@ -8,7 +8,7 @@ import {
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const secret = await getAdminSecret();
+  const secret = getAdminSecret();
 
   if (!secret) return NextResponse.next();
 

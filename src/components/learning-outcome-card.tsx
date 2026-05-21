@@ -7,9 +7,9 @@ interface LearningOutcomeCardProps {
 
 export function LearningOutcomeCard({ outcome }: LearningOutcomeCardProps) {
   return (
-    <article className="rounded-lg border border-border bg-card p-6 editorial-shadow">
-      <CelestialIcon name={outcome.icon} className="mb-4 size-6" />
-      <h3 className="font-serif text-lg font-medium">{outcome.title}</h3>
+    <article className="border border-border bg-card p-5 editorial-shadow">
+      <CelestialIcon name={outcome.icon} className="mb-3 size-5 text-primary" />
+      <h3 className="font-serif text-lg leading-snug">{outcome.title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
         {outcome.description}
       </p>

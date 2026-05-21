@@ -1,11 +1,5 @@
-export async function getEnv(): Promise<CloudflareEnv> {
-  try {
-    const { getCloudflareContext } = await import("@opennextjs/cloudflare");
-    const { env } = await getCloudflareContext({ async: true });
-    return env as CloudflareEnv;
-  } catch {
-    return process.env as unknown as CloudflareEnv;
-  }
+export function getEnvVar(key: string): string | undefined {
+  return process.env[key];
 }
 
 export function getStripePaymentLink(): string | undefined {

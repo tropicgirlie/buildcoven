@@ -7,10 +7,8 @@ interface SectionLabelProps {
 
 export function SectionLabel({ children, className }: SectionLabelProps) {
   return (
-    <p className={cn("section-label flex items-center gap-2", className)}>
-      <span aria-hidden>✦</span>
+    <p className={cn("section-label", className)}>
       {children}
-      <span aria-hidden>✦</span>
     </p>
   );
 }

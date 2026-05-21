@@ -9,16 +9,16 @@ interface InstructorCardProps {
 export function InstructorCard({ instructor }: InstructorCardProps) {
   return (
     <section
-      className="rounded-lg border border-border bg-card p-6 sm:p-8 editorial-shadow"
+      className="border border-border bg-card p-6 sm:p-8 editorial-shadow"
       aria-labelledby="instructor-heading"
     >
-      <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
+      <div className="flex flex-col gap-8 lg:flex-row lg:items-center">
         <Image
           src={instructor.avatar_url}
           alt=""
-          width={120}
-          height={120}
-          className="size-28 shrink-0 rounded-full object-cover ring-2 ring-border"
+          width={112}
+          height={112}
+          className="size-28 shrink-0 rounded-full object-cover ring-1 ring-border"
         />
         <div className="flex-1">
           <h2
@@ -28,20 +28,17 @@ export function InstructorCard({ instructor }: InstructorCardProps) {
             {instructor.name}
           </h2>
           <p className="mt-1 text-sm text-primary">{instructor.title}</p>
-          <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
+          <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
             {instructor.bio}
           </p>
         </div>
-        <ul className="space-y-3 lg:min-w-[200px]">
+        <ul className="space-y-3 lg:min-w-[210px]">
           {instructor.credentials.map((cred) => (
             <li
               key={cred}
               className="flex items-center gap-2 text-sm text-foreground"
             >
-              <Plus
-                className="size-3 shrink-0 text-primary"
-                aria-hidden
-              />
+              <Plus className="size-3 shrink-0 text-primary" aria-hidden />
               {cred}
             </li>
           ))}

@@ -13,8 +13,7 @@ export const metadata: Metadata = {
 
 export default async function AdminPage() {
   const applications = await getApplications();
-  const adminSecret = await getAdminSecret();
-  const isProtected = Boolean(adminSecret);
+  const isProtected = Boolean(getAdminSecret());
   const stripePaymentLink = getStripePaymentLink();
 
   return (
@@ -33,9 +32,8 @@ export default async function AdminPage() {
           className="mt-4 rounded-md border border-primary/30 bg-accent/20 px-4 py-3 text-sm text-muted-foreground"
         >
           MVP admin is open. Set{" "}
-          <code className="text-foreground">ADMIN_SECRET</code> in{" "}
-          <code className="text-foreground">.env.local</code> or Cloudflare
-          secrets before production.
+          <code className="text-foreground">ADMIN_SECRET</code> in Vercel env
+          vars before production.
         </p>
       )}
 

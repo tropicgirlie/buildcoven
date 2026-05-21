@@ -2,47 +2,50 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { CTAButton } from "@/components/cta-button";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/courses", label: "Courses" },
+  { href: "/courses", label: "Courses", hasDropdown: true },
   { href: "/courses", label: "Workshops" },
   { href: "/courses?category=Free+Lessons", label: "Free Lessons" },
-  { href: "/#why", label: "About" },
-  { href: "/faq", label: "FAQ" },
+  { href: "/#instructor", label: "About" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
+      <div className="mx-auto flex h-[4.25rem] max-w-[1400px] items-center justify-between px-5 sm:px-8 lg:px-10">
         <Link
           href="/"
-          className="font-serif text-xl font-medium tracking-tight text-foreground hover:text-primary-dark"
+          className="font-serif text-[1.35rem] font-medium tracking-tight text-foreground"
         >
           Build Coven
         </Link>
 
         <nav
-          className="hidden items-center gap-8 md:flex"
+          className="hidden items-center gap-9 lg:flex"
           aria-label="Main navigation"
         >
           {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="inline-flex items-center gap-1 text-[13px] text-foreground/80 transition-colors hover:text-foreground"
             >
               {link.label}
+              {link.hasDropdown && (
+                <ChevronDown className="size-3.5 opacity-60" aria-hidden />
+              )}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <CTAButton href="/apply" size="sm">
             Apply
           </CTAButton>
@@ -50,7 +53,7 @@ export function Header() {
 
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-md p-2 text-foreground md:hidden"
+          className="inline-flex items-center justify-center rounded-md p-2 text-foreground lg:hidden"
           onClick={() => setOpen(!open)}
           aria-expanded={open}
           aria-controls="mobile-menu"
@@ -63,7 +66,7 @@ export function Header() {
       <div
         id="mobile-menu"
         className={cn(
-          "border-t border-border bg-background md:hidden",
+          "border-t border-border bg-background lg:hidden",
           open ? "block" : "hidden",
         )}
       >

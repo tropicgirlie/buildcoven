@@ -29,22 +29,22 @@ export function CourseInfoCard({
   return (
     <aside
       className={cn(
-        "rounded-lg border border-border bg-card editorial-shadow",
+        "border border-border bg-card editorial-shadow",
         sticky && "lg:sticky lg:top-24",
         className,
       )}
       aria-label="Course details"
     >
-      <div className="rounded-t-lg bg-dark px-5 py-3">
-        <p className="section-label text-background/80">
+      <div className="bg-dark px-5 py-3">
+        <p className="section-label text-background/75">
           Cohort-based course
         </p>
       </div>
 
-      <div className="space-y-4 p-5">
-        <ul className="space-y-4">
+      <div className="space-y-0 p-5">
+        <ul className="divide-y divide-border">
           {details.map(({ icon: Icon, label, value }) => (
-            <li key={label} className="flex gap-3 text-sm">
+            <li key={label} className="flex gap-3 py-4 text-sm first:pt-0">
               <Icon
                 className="mt-0.5 size-4 shrink-0 text-primary"
                 aria-hidden
@@ -55,8 +55,8 @@ export function CourseInfoCard({
               </div>
             </li>
           ))}
-          <li className="flex gap-3 border-t border-border pt-4 text-sm">
-            <span className="text-muted-foreground">Price</span>
+          <li className="flex items-baseline justify-between gap-3 py-4">
+            <span className="text-sm text-muted-foreground">Price</span>
             <p className="font-serif text-2xl font-medium">
               {formatPrice(course.price)}
             </p>
@@ -81,11 +81,11 @@ export function CourseInfoCard({
           </div>
         )}
 
-        <CTAButton href="/apply" className="w-full">
+        <CTAButton href="/apply" className="mt-5 w-full">
           Apply for {course.badge ?? "Pilot 001"}
         </CTAButton>
 
-        <p className="text-center text-xs text-muted-foreground">
+        <p className="mt-3 text-center text-[11px] text-muted-foreground">
           Payment link sent after acceptance
         </p>
       </div>

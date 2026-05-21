@@ -4,10 +4,6 @@ import {
   addApplication,
   listApplications,
 } from "@/lib/applications-store";
-import {
-  insertApplicationD1,
-  listApplicationsFromD1,
-} from "@/lib/db/applications";
 import { sendApplicationConfirmationEmail } from "@/lib/email/send-application-confirmation";
 import type { TechnicalLevel } from "@/types";
 
@@ -15,9 +11,6 @@ export async function GET(request: Request) {
   if (!(await verifyAdminRequest(request))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-
-  const fromD1 = await listApplicationsFromD1();
-  if (fromD1) return NextResponse.json(fromD1);
   return NextResponse.json(listApplications());
 }
 
@@ -73,23 +66,14 @@ export async function POST(request: Request) {
       commitment_confirmed,
     };
 
-    const application = await insertApplicationD1(payload);
-    if (application) {
-      void sendApplicationConfirmationEmail({
-        to: application.email,
-        fullName: application.full_name,
-        applicationId: application.id,
-      }).catch(() => undefined);
-      return NextResponse.json({ success: true, application });
-    }
-
-    const mem = addApplication(payload);
+    const application = addApplication(payload);
     void sendApplicationConfirmationEmail({
-      to: mem.email,
-      fullName: mem.full_name,
-      applicationId: mem.id,
+      to: application.email,
+      fullName: application.full_name,
+      applicationId: application.id,
     }).catch(() => undefined);
-    return NextResponse.json({ success: true, application: mem });
+
+    return NextResponse.json({ success: true, application });
   } catch {
     return NextResponse.json(
       { error: "Invalid request." },

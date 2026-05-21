@@ -13,7 +13,3 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
-
-// Enables D1 bindings when running `next dev` (uses wrangler.jsonc locally)
-import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
-initOpenNextCloudflareForDev();

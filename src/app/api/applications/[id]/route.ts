@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { verifyAdminRequest } from "@/lib/auth/admin";
 import { updateApplicationStatus } from "@/lib/applications-store";
-import { updateApplicationStatusD1 } from "@/lib/db/applications";
 import type { ApplicationStatus } from "@/types";
 
 const validStatuses: ApplicationStatus[] = [
@@ -28,12 +27,9 @@ export async function PATCH(
     return NextResponse.json({ error: "Invalid status" }, { status: 400 });
   }
 
-  const updated = await updateApplicationStatusD1(id, status);
-  if (updated) return NextResponse.json(updated);
-
-  const mem = updateApplicationStatus(id, status);
-  if (!mem) {
+  const updated = updateApplicationStatus(id, status);
+  if (!updated) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
-  return NextResponse.json(mem);
+  return NextResponse.json(updated);
 }

@@ -1,12 +1,8 @@
 import { NextResponse } from "next/server";
-import {
-  COOKIE_NAME,
-  getAdminSecret,
-  hashAdminSecret,
-} from "@/lib/auth/admin";
+import { getAdminSecret, hashAdminSecret, COOKIE_NAME } from "@/lib/auth/admin";
 
 export async function POST(request: Request) {
-  const secret = await getAdminSecret();
+  const secret = getAdminSecret();
   if (!secret) {
     return NextResponse.json(
       { error: "Admin auth is not configured" },

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Quote } from "lucide-react";
 import type { Testimonial } from "@/types";
 
 interface TestimonialCardProps {
@@ -8,15 +7,11 @@ interface TestimonialCardProps {
 
 export function TestimonialCard({ testimonial }: TestimonialCardProps) {
   return (
-    <blockquote className="flex h-full flex-col rounded-lg border border-border bg-card p-6 editorial-shadow">
-      <Quote
-        className="size-8 text-primary/50"
-        aria-hidden
-      />
-      <p className="mt-4 flex-1 font-serif text-lg leading-relaxed text-foreground">
+    <blockquote className="flex h-full flex-col border border-border bg-card p-6 editorial-shadow">
+      <p className="flex-1 font-serif text-xl leading-relaxed">
         &ldquo;{testimonial.quote}&rdquo;
       </p>
-      <footer className="mt-6 flex items-center gap-3 border-t border-border pt-4">
+      <footer className="mt-8 flex items-center gap-3">
         <Image
           src={testimonial.avatar_url}
           alt=""
