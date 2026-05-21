@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "build-coven",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-05-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".open-next/assets"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "build-coven-db",
+      "migrations_dir": "d1/migrations"
+    }
+  ]
+}
