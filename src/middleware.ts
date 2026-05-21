@@ -3,7 +3,6 @@ import type { NextRequest } from "next/server";
 import {
   COOKIE_NAME,
   getAdminSecret,
-  getExpectedAdminCookie,
   verifyAdminCookie,
 } from "@/lib/auth/admin";
 

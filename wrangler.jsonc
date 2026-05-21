@@ -12,6 +12,7 @@
     {
       "binding": "DB",
       "database_name": "build-coven-db",
+      "database_id": "e11b0bde-c48c-4efe-9a49-e28e69895998",
       "migrations_dir": "d1/migrations"
     }
   ]
